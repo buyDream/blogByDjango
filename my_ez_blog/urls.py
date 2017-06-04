@@ -16,9 +16,10 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from article import views
 urlpatterns = [
-    url(r'^(?P<my_args>\d+)/$', views.detail, name='detail'),
-    url(r'^$', views.home),
-   # url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin/', admin.site.urls),
+    url(r'^(?P<id>\d+)/$', views.detail, name='detail'),
+    url(r'^$', views.home, name = 'home'),
+    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', admin.site.urls),
+    
     url(r'^test/$', views.test),
 ]
