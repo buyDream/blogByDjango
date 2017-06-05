@@ -4,7 +4,7 @@ from article.models import Article
 from datetime import datetime
 from django.http import Http404
 from django.contrib.syndication.views import Feed
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class RSSFeed(Feed):
     title = "RSS feed - article"
@@ -35,21 +35,36 @@ def blog_search(request):
             else:
                 return render(request,'archives.html', {'post_list': post_list, 'error': False})
     return redirect('/')
+
 def test(request):
     post_list = Article.objects.all()
     return render(request, 'home.html', {'post_list': post_list})   
 # return render(request, 'test.html', {'current_time': datetime.now()})
+
 def about_me(request):
     return render(request, 'aboutme.html')
+
 def home(request):
    # return HttpResponse("Hello World, Django")
-    post_list = Article.objects.all()
+    posts = Article.objects.all()
+    paginator = Paginator(posts, 2) # show 2 articles / one page
+    page = request.GET.get('page')
+    try:
+        post_list = paginator.page(page)
+    except PageNotAnInteger:
+        post_list = paginator.page(1)
+    except EmptyPage:
+        post_list = paginator.paginator(paginator.num_pages)
     return render(request, 'home.html', {'post_list': post_list})
-#def detail(request, my_args):
- #   post = Article.objects.all()[int(my_args)]
-  #  str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
-   # return HttpResponse(str)
+
+"""
+def detail(request, my_args):
+    post = Article.objects.all()[int(my_args)]
+    str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
+    return HttpResponse(str)
  #   return HttpResponse("Your're looking at my_args %s." % my_args)
+"""
+
 def detail(request, id):
     try:
         post = Article.objects.get(id=str(id))
