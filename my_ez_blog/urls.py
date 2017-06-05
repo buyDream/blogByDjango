@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^$', views.home, name = 'home'),
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^admin/', admin.site.urls),
-    
+    url(r'^archives/$', views.archives, name = 'archives'),    
     url(r'^test/$', views.test),
+    url(r'^aboutme/$', views.about_me, name = 'about_me'),
+    url(r'^tag(?P<tag>\w+)/$', views.search_tag, name = 'search_tag'),
 ]
