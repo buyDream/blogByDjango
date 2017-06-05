@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = (
-    'bootstrap_admin',
+    'bootstrap_admin', # 一定要写在django.contrib.admin之前
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
