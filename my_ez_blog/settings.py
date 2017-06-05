@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'article',
     'django.contrib.staticfiles',
+    'article.templatetags.custom_markdown',
 )
 
 from django.conf import global_settings
