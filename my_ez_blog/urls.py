@@ -30,3 +30,12 @@ urlpatterns = [
     url(r'^search/$', views.blog_search, name = 'search'),
     url(r'^feed/$', RSSFeed(), name = "RSS"),
 ]
+
+'''
+url()函数有四个参数，两个是必须的：regex和view，两个可选的kwargs和name
+    regex：是正则表达式，用于匹配Django请求的URL，知道匹配到一个为止
+    view： 当Django匹配成功就会执行指定view中的逻辑，如archives()，search()等
+    kwargs：任意关键字参数可以传一个字典到目标view
+    name： 命名你的URL，是URL在Django的其他地方可以使用。
+
+'''

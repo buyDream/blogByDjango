@@ -57,13 +57,22 @@ def home(request):
         post_list = paginator.paginator(paginator.num_pages)
     return render(request, 'home.html', {'post_list': post_list})
 
-"""
+'''
 def detail(request, my_args):
     post = Article.objects.all()[int(my_args)]
     str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
     return HttpResponse(str)
  #   return HttpResponse("Your're looking at my_args %s." % my_args)
-"""
+'''
+'''
+render()函数有四个参数
+    1. request
+    2. 模板名称
+    3. 字典类型（可选）
+返回一个渲染过得HttpResponse对象
+    
+'''
+
 
 def detail(request, id):
     try:
